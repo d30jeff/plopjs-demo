@@ -1,0 +1,17 @@
+import { Create{{pascalCase name}}Dto } from '@servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.dto';
+import { PaginationQueries } from '@utils/pagination.util';
+
+export namespace {{pascalCase name}} {
+  export type CreateParams = Create{{pascalCase name}}Dto;
+
+  export type ListParams = PaginationQueries;
+
+  export type FindOneParams = {
+    ID: string;
+  };
+
+  export type UpdateParams = CreateParams & FindOneParams;
+
+  export type DeleteParams = FindOneParams;
+
+}

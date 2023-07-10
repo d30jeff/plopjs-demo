@@ -6,10 +6,15 @@
   "scripts": {
     "plop": "NODE_ENV=development plop",
     "build": "rimraf dist && tsc",
+    "test": "NODE_ENV=testing jest --detectOpenHandles --logHeapUsage",
     "consumer": "node -r module-alias/register dist/servers/consumer/consumer.server.js",
     "consumer:dev": "NODE_ENV=development tsc-watch --onSuccess \"yarn consumer\"",
     "consumer:staging": "NODE_ENV=staging yarn consumer",
-    "consumer:production": "NODE_ENV=production yarn consumer"
+    "consumer:production": "NODE_ENV=production yarn consumer",
+    "admin": "yarn copy-email-templates && node -r module-alias/register dist/servers/admin/admin.server.js",
+    "admin:dev": "NODE_ENV=development tsc-watch --onSuccess \"yarn admin\"",
+    "admin:staging": "NODE_ENV=staging yarn admin",
+    "admin:production": "NODE_ENV=production yarn admin"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
@@ -33,7 +38,7 @@
     "plop": "2.7.4",
     "plop-pack-json-modify": "^1.1.0",
     "supertest": "^6.1.5",
-    "ts-jest": "27.0.1",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.0.0",
     "tsc-watch": "^4.4.0",
     "tsload": "^1.0.0",

@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: Admin API
+  description:
+  version: 1.0.0
+servers:
+  - url: http://localhost:5001/v1
+    description: Local Development Server
+    variables:
+      basePath:
+        default: v1
+  - url: https://staging.admin-api.domain.com/v1
+    description: Staging Server
+    variables:
+      basePath:
+        default: v1
+  - url: https://Admin-api.domain.com/v1
+    description: Production Server
+    variables:
+      basePath:
+        default: v1
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: apiKey
+      name: Bearer
+      in: header
+
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: Admin
+
+security:
+  - bearerAuth: []
+  - cookieAuth: []
+
+paths:
+  /account/check:
+    $ref: "../account/account.doc.yml#/components/Check"
+  /account/signup:
+    $ref: "../account/account.doc.yml#/components/Signup"

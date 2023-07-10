@@ -4,6 +4,7 @@ import { Signale } from 'signale';
 export const SignaleLogger = (name: string): Signale => {
   return new Signale({
     scope: `${config.NODE_ENV.toUpperCase()} ${name}`,
+    disabled: config.NODE_ENV === 'testing',
     config: {
       displayTimestamp: true,
       displayBadge: true,

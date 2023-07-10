@@ -1,0 +1,133 @@
+import { serializePaginationParams } from '@utils/pagination.util';
+import {
+  ExpressNextFunction,
+  ExpressRequest,
+  ExpressResponse,
+} from '@interfaces/express.interface';
+import {
+  Controller,
+  Delete,
+  Get,
+  Next,
+  Params,
+  Post,
+  Put,
+  Request,
+  Response,
+} from '@decorators/express';
+import { Create{{pascalCase name}}Dto, Update{{pascalCase name}}Dto } from '@servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.dto';
+import { {{pascalCase name}}Response } from '@servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.response';
+import { CustomLogger, Logger } from '@providers/logger.provider';
+import { validate } from '@utils/class-validator.util';
+import { services } from '@servers/{{kebabCase server}}/{{kebabCase server}}.services';
+import { HttpStatus } from '@enums/http-status.enum';
+
+@Controller('/{{kebabCase name}}')
+export class {{pascalCase name}}Controller {
+  @Logger()
+  private readonly logger: CustomLogger;
+
+  @Post('/')
+  async create(
+    @Request() request: ExpressRequest,
+    @Response() response: ExpressResponse,
+    @Next() next: ExpressNextFunction
+  ) {
+    try {
+      const body = await validate<Create{{pascalCase name}}Dto>(Create{{pascalCase name}}Dto, request.body);
+      const data = await services.{{camelCase name}}.create({
+        ...body,
+      });
+
+      return response.status(HttpStatus.Created).json(new {{pascalCase name}}Response(data));
+    } catch (error) {
+      this.logger.fatal(error);
+      next(error);
+    }
+  }
+
+  @Get('/')
+  async list(
+    @Request() request: ExpressRequest,
+    @Response() response: ExpressResponse,
+    @Next() next: ExpressNextFunction
+  ) {
+    try {
+      const { page, limit } = serializePaginationParams(request);
+
+      const { items, pagination } = await services.{{camelCase name}}.list({
+        page,
+        limit,
+      });
+
+      return response.status(HttpStatus.Ok).json({
+        items: items.map((item) => {
+          return new {{pascalCase name}}Response(item);
+        }),
+        pagination,
+      });
+    } catch (error) {
+      this.logger.fatal(error);
+      next(error);
+    }
+  }
+
+  @Get('/:ID')
+  async get(
+    @Params('ID') ID: string,
+    @Request() request: ExpressRequest,
+    @Response() response: ExpressResponse,
+    @Next() next: ExpressNextFunction
+  ) {
+    try {
+      const data = await services.{{camelCase name}}.findOne({
+        ID,
+      });
+
+      return response.status(HttpStatus.Ok).json(new {{pascalCase name}}Response(data));
+    } catch (error) {
+      this.logger.fatal(error);
+      next(error);
+    }
+  }
+
+  @Put('/:ID')
+  async update(
+    @Params('ID') ID: string,
+    @Request() request: ExpressRequest,
+    @Response() response: ExpressResponse,
+    @Next() next: ExpressNextFunction
+  ) {
+    try {
+      const body = await validate<Update{{pascalCase name}}Dto>(Update{{pascalCase name}}Dto, request.body);
+      const data = await services.{{camelCase name}}.update({
+        ...body,
+        ID,
+      });
+
+      return response.status(HttpStatus.Ok).json(new {{pascalCase name}}Response(data));
+    } catch (error) {
+      this.logger.fatal(error);
+      next(error);
+    }
+  }
+
+  @Delete('/:ID')
+  async delete(
+    @Params('ID') ID: string,
+    @Request() request: ExpressRequest,
+    @Response() response: ExpressResponse,
+    @Next() next: ExpressNextFunction
+  ) {
+    try {
+      await services.{{camelCase name}}.delete({
+        ID,
+      });
+
+      return response.sendStatus(HttpStatus.NoContent);
+    } catch (error) {
+      this.logger.fatal(error);
+      next(error);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+import { Middleware, Next, Request, Response } from '@decorators/express';
+import {
+  ExpressNextFunction,
+  ExpressRequest,
+  ExpressResponse,
+} from '@interfaces/express.interface';
+import { CustomLogger, Logger } from '@providers/logger.provider';
+
+export class {{pascalCase name}}Middleware implements Middleware {
+  @Logger()
+  private readonly logger: CustomLogger;
+
+  public async use(
+    @Request() request: ExpressRequest,
+    @Response() response: ExpressResponse,
+    @Next() next: ExpressNextFunction
+  ) {
+    next();
+  }
+}

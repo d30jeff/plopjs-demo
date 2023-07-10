@@ -1,0 +1,11 @@
+import { CommonResponse } from '@responses/common.response';
+
+import {
+  {{pascalCase name}}WithPublicFields,
+ } from '@repositories/{{kebabCase name}}.repository';
+
+export class {{pascalCase name}}Response extends CommonResponse {
+  constructor(params: {{pascalCase name}}WithPublicFields) {
+    super(params);
+  }
+}

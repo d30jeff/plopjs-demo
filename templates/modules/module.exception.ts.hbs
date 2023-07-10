@@ -1,0 +1,13 @@
+import { NotFoundException, ConflictException } from '@exceptions/http-exception';
+
+export class {{pascalCase name}}NotFound extends NotFoundException {
+  constructor(details?: string) {
+    super('{{titleCase name}} Not Found', '{{pascalCase name}}NotFound', details);
+  }
+}
+
+export class {{pascalCase name}}AlreadyExists extends ConflictException {
+  constructor(details?: string) {
+    super('{{titleCase name}} Already Exists', '{{pascalCase name}}NotFound', details);
+  }
+}

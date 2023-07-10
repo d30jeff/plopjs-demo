@@ -169,22 +169,22 @@ const createModule = (data: any, items: ActionType[]) => {
     {
       type: 'add',
       path: 'src/servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.middleware.ts',
-      templateFile: 'templates/module/middleware.ts.hbs',
+      templateFile: 'templates/modules/module.middleware.ts.hbs',
     },
     {
       type: 'add',
       path: 'src/servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.dto.ts',
-      templateFile: 'templates/module/dto.ts.hbs',
+      templateFile: 'templates/modules/module.dto.ts.hbs',
     },
     {
       type: 'add',
       path: 'src/servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.response.ts',
-      templateFile: 'templates/module/response.ts.hbs',
+      templateFile: 'templates/modules/module.response.ts.hbs',
     },
     {
       type: 'add',
       path: 'src/servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.exception.ts',
-      templateFile: 'templates/module/exception.ts.hbs',
+      templateFile: 'templates/modules/module.exception.ts.hbs',
     },
     {
       type: 'modify',
@@ -215,7 +215,7 @@ const createModule = (data: any, items: ActionType[]) => {
   items.push({
     type: 'add',
     path: 'src/servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.interface.ts',
-    templateFile: 'templates/module/interface.ts.hbs',
+    templateFile: 'templates/modules/module.interface.ts.hbs',
   });
 
   if (data?.repository) {
@@ -223,12 +223,12 @@ const createModule = (data: any, items: ActionType[]) => {
       {
         type: 'add',
         path: 'src/servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.controller.ts',
-        templateFile: 'templates/module/controller.ts.hbs',
+        templateFile: 'templates/modules/module.controller.ts.hbs',
       },
       {
         type: 'add',
         path: 'src/servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.service.ts',
-        templateFile: 'templates/module/service.ts.hbs',
+        templateFile: 'templates/modules/module.service.ts.hbs',
       },
       {
         type: 'add',

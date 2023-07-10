@@ -1,3 +1,4 @@
+import { BadRequestException } from '@exceptions/http-exception';
 import { Prisma } from '@prisma/client';
 import { database } from '@providers/database.provider';
 import { CustomLogger, Logger } from '@providers/logger.provider';
@@ -13,6 +14,14 @@ export class CatService {
 
   async create(params: Cat.CreateParams) {
     const { name } = params;
+
+    if (!name) {
+      throw new BadRequestException('Name is required', {
+        field: 'name',
+        description: 'Name is required',
+        location: 'Body',
+      });
+    }
 
     return database.write.$transaction(async (tx) => {
       const existing = await repositories.cat.findFirst(

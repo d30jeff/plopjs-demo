@@ -17,3 +17,11 @@ model Cat {
 
   @@index([ID, name, createdAt])
 }
+
+model Dog {
+  ID        String   @id
+  name      String   @unique
+  createdAt DateTime @default(now())
+
+  @@index([ID, name, createdAt])
+}

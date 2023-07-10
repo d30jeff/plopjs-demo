@@ -1,0 +1,80 @@
+import { CustomLogger, Logger } from '@providers/logger.provider';
+import { {{pascalCase name}} } from '@servers/{{kebabCase server}}/{{kebabCase name}}/{{kebabCase name}}.interface';
+import { Prisma } from '@prisma/client';
+import { repositories } from '@repositories/index.repository';
+import { {{pascalCase name}}PublicSelect, {{pascalCase name}}WithPublicFields } from '@repositories/{{kebabCase name}}.repository';
+import { Pagination } from '@utils/pagination.util';
+import { database } from '@providers/database.provider';
+
+export class {{pascalCase name}}Service {
+  @Logger()
+  private readonly logger: CustomLogger;
+
+  async create(params: {{pascalCase name}}.CreateParams, connection: Prisma.TransactionClient = database.write) {
+    const {} = params;
+
+    return repositories.{{camelCase name}}.create({
+      select: {{pascalCase name}}PublicSelect,
+      data: {} as Prisma.{{pascalCase name}}CreateInput,
+    }) as unknown as {{pascalCase name}}WithPublicFields;
+  }
+
+  async list(params: {{pascalCase name}}.ListParams, connection: Prisma.TransactionClient = database.read) {
+    const { page, limit } = params;
+
+    const AND: Prisma.Enumerable<Prisma.{{pascalCase name}}WhereInput> = [];
+    let where: Prisma.{{pascalCase name}}WhereInput = {};
+    where = {
+      ...where,
+      AND,
+    };
+    const total = await repositories.{{camelCase name}}.count({ where });
+    const items = (await repositories.{{camelCase name}}.findMany({
+      select: {{pascalCase name}}PublicSelect,
+      skip: (page - 1) * limit,
+      take: limit,
+      where,
+    })) as unknown as {{pascalCase name}}WithPublicFields[];
+
+    return {
+      items,
+      pagination: new Pagination({
+        page,
+        limit,
+        total,
+      }),
+    };
+  }
+
+  async findOne(params: {{pascalCase name}}.FindOneParams) {
+    const { ID } = params;
+
+    return repositories.{{camelCase name}}.findFirst({
+      select: {{pascalCase name}}PublicSelect,
+      where: {
+        ID,
+      },
+    }) as unknown as {{pascalCase name}}WithPublicFields;
+  }
+
+  async update(params: {{pascalCase name}}.UpdateParams) {
+    const { ID } = params;
+
+    return repositories.{{camelCase name}}.update({
+      select: {{pascalCase name}}PublicSelect,
+      data: {},
+      where: {
+        ID,
+      },
+    }) as unknown as {{pascalCase name}}WithPublicFields;
+  }
+
+  async delete(params: {{pascalCase name}}.DeleteParams) {
+    const { ID } = params;
+    return repositories.{{camelCase name}}.delete({
+      where: {
+        ID,
+      },
+    });
+  }
+}

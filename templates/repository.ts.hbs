@@ -1,0 +1,63 @@
+import { Prisma } from '@prisma/client';
+import { database } from '@providers/database.provider';
+
+const fields = {
+  ID: true,
+  createdAt: true,
+  updatedAt: true,
+};
+
+export const {{pascalCase name}}PublicSelect = Prisma.validator<Prisma.{{pascalCase name}}Select>()(fields);
+
+export type {{pascalCase name}}WithPublicFields = Prisma.{{pascalCase name}}GetPayload<{
+  select: typeof {{pascalCase name}}PublicSelect;
+}>;
+
+export const {{pascalCase name}}PrivateSelect = Prisma.validator<Prisma.{{pascalCase name}}Select>()({
+  ...fields,
+});
+
+export class {{pascalCase name}}Repository {
+  aggregate(params: Prisma.{{pascalCase name}}AggregateArgs, connection: Prisma.TransactionClient = database.read) {
+    return connection.{{camelCase name}}.aggregate(params);
+  }
+
+  upsert(params: Prisma.{{pascalCase name}}UpsertArgs, connection: Prisma.TransactionClient = database.write) {
+    return connection.{{camelCase name}}.upsert(params);
+  }
+
+  create(params: Prisma.{{pascalCase name}}CreateArgs, connection: Prisma.TransactionClient = database.write) {
+    return connection.{{camelCase name}}.create(params);
+  }
+
+  createMany(
+    params: Prisma.{{pascalCase name}}CreateManyArgs,
+    connection: Prisma.TransactionClient = database.write
+  ) {
+    return connection.{{camelCase name}}.createMany(params);
+  }
+
+  findFirst(params: Prisma.{{pascalCase name}}FindFirstArgs, connection: Prisma.TransactionClient = database.read) {
+    return connection.{{camelCase name}}.findFirst(params);
+  }
+
+  findMany(params: Prisma.{{pascalCase name}}FindManyArgs, connection: Prisma.TransactionClient = database.read) {
+    return connection.{{camelCase name}}.findMany(params);
+  }
+
+  count(params: Prisma.{{pascalCase name}}CountArgs, connection: Prisma.TransactionClient = database.read) {
+    return connection.{{camelCase name}}.count(params);
+  }
+
+  update(params: Prisma.{{pascalCase name}}UpdateArgs, connection: Prisma.TransactionClient = database.write) {
+    return connection.{{camelCase name}}.update(params);
+  }
+
+  delete(params: Prisma.{{pascalCase name}}DeleteArgs, connection: Prisma.TransactionClient = database.write) {
+    return connection.{{camelCase name}}.delete(params);
+  }
+
+  deleteMany(params: Prisma.{{pascalCase name}}DeleteManyArgs, connection: Prisma.TransactionClient = database.write) {
+    return connection.{{camelCase name}}.deleteMany(params);
+  }
+}
