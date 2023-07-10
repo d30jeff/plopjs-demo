@@ -13,7 +13,7 @@ jobs:
     env:
       DATABASE_URL: 'postgres://db_user:db_password@localhost:5432/db_name'
       DATABASE_READ_REPLICA_URL: 'postgres://db_user:db_password@localhost:5432/db_name'
-      CONSUMER_API_PORT: 5003,
+      CONSUMER_API_PORT: 3000
 
     services:
       postgres:
