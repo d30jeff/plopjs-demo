@@ -1,0 +1,46 @@
+components:
+  responses:
+    CatNotFound:
+      type: object
+      description: Given ID for Cat does not exists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    default: "CatNotFound"
+                  details:
+                    type: string
+                  message:
+                    type: string
+                    default: "Cat Not Found"
+              metadata:
+                type: object
+                $ref: "../../metadata.schema.yml#/components/schemas/Metadata"
+    CatAlreadyExists:
+      type: object
+      description: A cat with given name already exists
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    default: "CatAlreadyExists"
+                  details:
+                    type: string
+                  message:
+                    type: string
+                    default: "Cat Already Exists"
+              metadata:
+                type: object
+                $ref: "../../metadata.schema.yml#/components/schemas/Metadata"

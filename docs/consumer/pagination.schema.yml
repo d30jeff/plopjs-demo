@@ -1,0 +1,13 @@
+components:
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        limit:
+          type: number
+        page:
+          type: number
+        totalPages:
+          type: number
+        totalResults:
+          type: number

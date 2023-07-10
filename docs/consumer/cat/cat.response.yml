@@ -1,0 +1,36 @@
+components:
+  responses:
+    Single:
+      type: object
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                $ref: "./cat.schema.yml#/components/schemas/Cat"
+              metadata:
+                type: object
+                $ref: "../../../metadata.schema.yml#/components/schemas/Metadata"
+    Paginated:
+      type: object
+      description: Paginated List of Cats
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    $ref: "./cat.schema.yml#/components/schemas/Cat"
+                  pagination:
+                    type: object
+                    $ref: "../../pagination.schema.yml#/components/schemas/Pagination"
+              metadata:
+                type: object
+                $ref: "../../../metadata.schema.yml#/components/schemas/Metadata"

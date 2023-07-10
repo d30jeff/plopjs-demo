@@ -1,0 +1,25 @@
+import { createApplication } from '@utils/application.util';
+import { config } from '@providers/config.provider';
+import { controllers } from '@servers/{{kebabCase server}}/{{kebabCase server}}.controllers';
+
+async function main() {
+  const { app, logger } = await createApplication({
+    name: '{{titleCase server}}',
+    controllers,
+    origin: [],
+    staticPaths: [
+      {
+        prefix: '/',
+        path: 'docs/{{kebabCase server}}',
+      },
+    ],
+  });
+
+  app.listen(config.{{constantCase server}}_PORT, async () => {
+    logger.success(`{{titleCase server}} is running on port ${config.{{constantCase server}}_PORT} 🚀`, {
+      ...config,
+    });
+  });
+}
+
+main();

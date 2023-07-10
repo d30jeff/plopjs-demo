@@ -1,0 +1,13 @@
+components:
+  schemas:
+    Metadata:
+      type: object
+      properties:
+        requestID:
+          type: string
+        resource:
+          type: string
+        statusCode:
+          type: number
+        timestamp:
+          type: string

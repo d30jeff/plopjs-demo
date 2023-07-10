@@ -1,0 +1,17 @@
+.env*
+!.env.example
+node_modules
+dist
+yarn-error.log
+prisma/dbml
+data/
+!data/.gitkeep
+logs
+src/secrets/*
+src/secrets/!.gitkeep
+docker-compose*
+!docker-compose.yml.example
+data
+ecosystem.config.js
+coverage/*
+service-key.json

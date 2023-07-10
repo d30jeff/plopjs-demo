@@ -1,0 +1,53 @@
+components:
+  get:
+    summary: Find One
+    description: Returns a Cat record based on given ID
+    tags:
+      - "Cat"
+    operationId: "get/cats/:ID"
+    responses:
+      "200":
+        $ref: "./cat.response.yml#/components/responses/Single"
+      "404":
+        $ref: "./cat.error.yml#/components/responses/CatNotFound"
+      "500":
+        $ref: "../../error.schema.yml#/components/responses/InternalServerError"
+
+  put:
+    summary: Update
+    description: Update an existing Cat record based on given ID
+    tags:
+      - "Cat"
+    operationId: "put/cats/:ID"
+    requestBody:
+      description: Payload for updating Cat
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "./cat.payload.yml#/components/schemas/Cat"
+    responses:
+      "200":
+        $ref: "./cat.response.yml#/components/responses/Single"
+      "400":
+        $ref: "../../error.schema.yml#/components/responses/ValidationError"
+      "404":
+        $ref: "./cat.error.yml#/components/responses/CatNotFound"
+      "409":
+        $ref: "./cat.error.yml#/components/responses/CatAlreadyExists"
+      "500":
+        $ref: "../../error.schema.yml#/components/responses/InternalServerError"
+
+  delete:
+    summary: Delete
+    description: Delete an existing Cat record based on given ID
+    tags:
+      - "Cat"
+    operationId: "put/cats/:ID"
+    responses:
+      "204":
+        description: Cat Successfully Deleted
+      "404":
+        $ref: "./cat.error.yml#/components/responses/CatNotFound"
+      "500":
+        $ref: "../../error.schema.yml#/components/responses/InternalServerError"

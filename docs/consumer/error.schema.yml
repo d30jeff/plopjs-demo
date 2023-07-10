@@ -1,0 +1,56 @@
+components:
+  responses:
+    InternalServerError:
+      type: object
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: enum
+                    enum:
+                      - InternalServerError
+                  message:
+                    type: string
+                    description: Fallback message in case code is not being used to handle dynamic error message
+              metadata:
+                type: object
+                $ref: "./metadata.schema.yml#/components/schemas/Metadata"
+
+    ValidationError:
+      type: object
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    default: "ValidationError"
+                  message:
+                    type: string
+                    default: "Validation Error"
+                  errors:
+                    type: array
+                    description: Array of objects containing the field name and constraint
+                    properties:
+                      field:
+                        type: object
+                        description: JSON field name
+                        properties:
+                          constraint:
+                            type: string
+                            description: Name of the constraint
+
+              metadata:
+                type: object
+                $ref: "./metadata.schema.yml#/components/schemas/Metadata"
