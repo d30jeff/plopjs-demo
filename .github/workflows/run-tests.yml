@@ -40,4 +40,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
+      - run: yarn prisma db push
+      - run: yarn prisma generate
       - run: yarn test --verbose
