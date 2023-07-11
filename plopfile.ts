@@ -118,7 +118,7 @@ const createServer = (data: any, items: ActionType[]) => {
       JSONFile: './package.json' as any, // File to modify
       JSONKey: 'scripts', // Property to append to
       JSONEntryKey: '{{kebabCase server}}', // Property to add
-      JSONEntryValue: `yarn copy-email-templates && node -r module-alias/register dist/servers/{{kebabCase server}}/{{kebabCase server}}.server.js`,
+      JSONEntryValue: `node -r module-alias/register dist/servers/{{kebabCase server}}/{{kebabCase server}}.server.js`,
     } as any,
     {
       // Add

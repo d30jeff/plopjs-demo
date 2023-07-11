@@ -1,16 +1,16 @@
 require('source-map-support').install();
 import { Container } from '@decorators/di';
 import { ERROR_MIDDLEWARE, attachControllers } from '@decorators/express';
-import express, { Express, Router } from 'express';
-import requestID from 'express-request-id';
-import { json, raw, urlencoded } from 'body-parser';
-import mung from 'express-mung';
-import { responseInterceptor } from '@utils/response.util';
 import { GlobalErrorMiddleware } from '@middlewares/error.middleware';
 import { config } from '@providers/config.provider';
-import morgan from 'morgan';
-import { dayjs } from '@utils/dayjs.util';
 import { SignaleLogger } from '@providers/logger.provider';
+import { dayjs } from '@utils/dayjs.util';
+import { responseInterceptor } from '@utils/response.util';
+import { json } from 'body-parser';
+import express, { Express, Router } from 'express';
+import mung from 'express-mung';
+import requestID from 'express-request-id';
+import morgan from 'morgan';
 import { Signale } from 'signale';
 
 export type CreateApplicationParams = {
