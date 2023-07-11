@@ -1,10 +1,10 @@
+import { Server } from 'http';
 import { HttpStatus } from '@enums/http-status.enum';
 import { config } from '@providers/config.provider';
 import { repositories } from '@repositories/index.repository';
 import { controllers } from '@servers/consumer/consumer.controllers';
 import { createApplication } from '@utils/application.util';
 import request, { SuperAgentTest } from 'supertest';
-import { Server } from 'http';
 
 describe('Cat Controller', () => {
   let instance: SuperAgentTest;

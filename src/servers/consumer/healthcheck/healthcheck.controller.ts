@@ -6,7 +6,6 @@ import {
   ExpressResponse,
 } from '@interfaces/express.interface';
 import { CustomLogger, Logger } from '@providers/logger.provider';
-import { serializePaginationParams } from '@utils/pagination.util';
 
 @Controller('/healthcheck')
 export class HealthcheckController {

@@ -21,7 +21,7 @@ const log: (Prisma.LogLevel | Prisma.LogDefinition)[] = [
   {
     emit: 'stdout',
     level: 'info',
-  }
+  },
 ];
 
 const prismaWriteConnection: PrismaClient<Prisma.PrismaClientOptions, 'query'> = new PrismaClient({
@@ -41,7 +41,6 @@ const prismaReadConnection: PrismaClient<Prisma.PrismaClientOptions, 'query'> = 
     },
   },
 });
-
 
 const middleware = async (params: Prisma.MiddlewareParams, next) => {
   if (

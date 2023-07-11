@@ -1,5 +1,4 @@
 import { ExpressRequest, ExpressResponse } from '@interfaces/express.interface';
-import { SignaleLogger } from '@providers/logger.provider';
 import { dayjs } from '@utils/dayjs.util';
 import { getFormattedPath } from '@utils/request.util';
 

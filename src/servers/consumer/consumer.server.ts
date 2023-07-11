@@ -1,6 +1,5 @@
 import { config } from '@providers/config.provider';
 import { controllers } from '@servers/consumer/consumer.controllers';
-import { services } from '@servers/consumer/consumer.services';
 import { createApplication } from '@utils/application.util';
 
 async function main() {
